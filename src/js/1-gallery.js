@@ -1,3 +1,7 @@
+// Імпорт JS //
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const images = [
   {
@@ -65,31 +69,27 @@ const images = [
   },
 ];
 
+
+
 const galleryEl = document.querySelector(".gallery");
+container.insertAdjacentHTML("beforeend", galleryItemMarkup(images));
+
 function galleryItemMarkup(obj) {
     return obj.map(({ preview, original, description }) =>
     `<li class="gallery-item">
     <a class="gallery-link" href="${original}">
     <img class="gallery-image" src="${preview}" 
-    data-source="${original}" alt="${description}" 
+     alt="${description}" 
     />
     </a>
     </li>  
     `).join("");
 }
-galleryEl.insertAdjacentHTML("beforeend", galleryItemMarkup(images));
-galleryEl.addEventListener('click', handleClick);
 
-function handleClick(event) {
-  event.preventDefault();
-
-  if (event.target.nodeName !== "IMG") {
-    return;
-  }
-  const handleClick = event.target.dataset.source;
-  const instance = basicLightbox.create(`
-  <img src="${handleClick}" width="1112" height="648"> 
-  `);
-   
-  instance.show();
-  }
+const lightbox = new SimpleLightbox(".gallery a", {
+  
+  captionSelector: "img",
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250,
+});
