@@ -1,14 +1,14 @@
-
-const form = document.querySelector(".feedback-form");
-const STORAGE_KEY = "feedback-form-state";
-
-let formData = {
+const formData = {
     email: "",
     message: "",
 };
 
+const form = document.querySelector(".feedback-form");
+const STORAGE_KEY = "feedback-form-state";
 
 
+form.addEventListener("input", onFormInput);
+form.addEventListener("submit", onFormSubmit);
 
 function onFormInput(event) {
     const { name, value } = event.target;
@@ -23,10 +23,6 @@ function onFormInput(event) {
         form.elements.email.value = formData.email || "";
         form.elements.message.value = formData.message || "";
 }
-
-form.addEventListener("input", onFormInput);
-form.addEventListener("submit", onFormSubmit);
-
 function onFormSubmit(event) {
     event.preventDefault();
 
