@@ -3,6 +3,7 @@ import SimpleLightbox from "simplelightbox";
 // Додатковий імпорт стилів
 import "simplelightbox/dist/simple-lightbox.min.css";
 
+
 const images = [
   {
     preview:
@@ -69,10 +70,7 @@ const images = [
   },
 ];
 
-
-
-const galleryEl = document.querySelector(".gallery");
-container.insertAdjacentHTML("beforeend", galleryItemMarkup(images));
+const container = document.querySelector(".gallery");
 
 function galleryItemMarkup(obj) {
     return obj.map(({ preview, original, description }) =>
@@ -85,10 +83,8 @@ function galleryItemMarkup(obj) {
     </li>  
     `).join("");
 }
-
-const lightbox = new SimpleLightbox(".gallery a", {
-  
-  captionSelector: "img",
+container.insertAdjacentHTML("beforeend", galleryItemMarkup(images));
+const lightbox = new SimpleLightbox(".gallery a", {  
   captionsData: "alt",
   captionPosition: "bottom",
   captionDelay: 250,
