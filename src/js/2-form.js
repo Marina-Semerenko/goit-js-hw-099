@@ -6,6 +6,9 @@ const formData = {
 const form = document.querySelector(".feedback-form");
 const STORAGE_KEY = "feedback-form-state";
 
+form.addEventListener("input", onFormInput);
+form.addEventListener("submit", onFormSubmit);
+
 function onFormInput(event) {
     const { name, value } = event.target;
     if (!name) return;
@@ -13,8 +16,6 @@ function onFormInput(event) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
-form.addEventListener("input", onFormInput);
-form.addEventListener("submit", onFormSubmit);
 
     const savedData = localStorage.getItem(STORAGE_KEY);
     if (savedData) {
