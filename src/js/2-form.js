@@ -8,8 +8,7 @@ let formData = {
 };
 
 
-form.addEventListener("input", onFormInput);
-form.addEventListener("submit", onFormSubmit);
+
 
 function onFormInput(event) {
     const { name, value } = event.target;
@@ -24,6 +23,10 @@ function onFormInput(event) {
         form.elements.email.value = formData.email || "";
         form.elements.message.value = formData.message || "";
 }
+
+form.addEventListener("input", onFormInput);
+form.addEventListener("submit", onFormSubmit);
+
 function onFormSubmit(event) {
     event.preventDefault();
 
